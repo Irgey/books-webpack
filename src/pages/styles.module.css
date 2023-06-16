@@ -1,0 +1,14 @@
+.contentWrapper {
+  display: flex;
+  gap: 15px;
+}
+.textContentWrapper {
+  display: flex;
+  flex-direction: column;
+}
+.contentList {
+  list-style: none;
+}
+.descrContainer {
+  max-width: 720px;
+}
