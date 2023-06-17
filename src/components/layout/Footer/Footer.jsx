@@ -7,9 +7,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 import socials from '../../../data/socials.json';
 export const Footer = () => {
-  console.log(socials);
   const serveIcon = name => {
-    console.log(typeof name);
     const lowerName = name.toLowerCase();
     if (lowerName === 'github') {
       return <GitHubIcon sx={{ color: 'white' }} />;

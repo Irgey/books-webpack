@@ -32,6 +32,7 @@ const Breadcrumbs = () => {
       {pathCrumbs &&
         pathCrumbs.map(crumb => (
           <Button
+            key={crumb}
             sx={{ color: 'white' }}
             variant="text"
             onClick={() => {
