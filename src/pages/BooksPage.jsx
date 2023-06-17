@@ -11,8 +11,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { IconButton, Skeleton, TextField, styled } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import { Skeleton, styled } from '@mui/material';
 // Local
 import { searchByQuery } from '../services/books-api';
 import { BooksDetails } from '../components/BookDetails/BooksDetails';
@@ -22,7 +21,6 @@ export const BooksPage = () => {
   const searchQuery = searchParams.get('q');
   const currentDetails = searchParams.get('details');
   const [currentId, setCurrentId] = useState('');
-  const [query, setQuery] = useState('');
 
   const {
     data: tableBooks,
@@ -52,30 +50,6 @@ export const BooksPage = () => {
     <>
       <ReactQueryDevtools />
       <div>
-        <StyledForm
-          onSubmit={e => {
-            e.preventDefault();
-            setSearchParams({ q: query });
-          }}
-        >
-          <TextField
-            id="outlined-basic"
-            label="Type search query"
-            variant="outlined"
-            onChange={e => {
-              setQuery(e.target.value);
-            }}
-          />
-          <IconButton
-            aria-label="delete"
-            color="primary"
-            disabled={query ? false : true}
-            type="submit"
-            size="large"
-          >
-            <SearchIcon />
-          </IconButton>
-        </StyledForm>
         {tableBooks && searchQuery && (
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -157,5 +131,3 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-
-const StyledForm = styled('form')({ display: 'flex', alignItems: 'center' });

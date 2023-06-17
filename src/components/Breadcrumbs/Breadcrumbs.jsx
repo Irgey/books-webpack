@@ -25,7 +25,7 @@ const Breadcrumbs = () => {
   return (
     <MUIBreadcrumbs
       aria-label="breadcrumb"
-      separator={<NavigateNextIcon fontSize="small" />}
+      separator={<NavigateNextIcon fontSize="small" sx={{ color: 'white' }} />}
     >
       {pathCrumbs &&
         pathCrumbs.map(crumb => (
