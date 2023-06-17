@@ -1,5 +1,4 @@
 // Libs
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useSearchParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
