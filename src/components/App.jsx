@@ -8,6 +8,7 @@ import { useState } from 'react';
 
 export const App = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const queryParams = searchParams.get('q');
   const [query, setQuery] = useState('');
 
   return (
@@ -25,7 +26,9 @@ export const App = () => {
         <Route index element={<HomePage />} />
         <Route
           path="books"
-          element={<BooksPage searchParams={searchParams} />}
+          element={
+            <BooksPage searchParams={searchParams} query={queryParams} />
+          }
         />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

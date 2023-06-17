@@ -35,6 +35,7 @@ export const BooksTable = () => {
     console.dir(searchQuery);
     searchQuery && getSearchedBooks();
   }, [searchQuery, getSearchedBooks]);
+
   const handleRowClick = id => {
     if (currentId === id) {
       setCurrentId('');
@@ -43,6 +44,16 @@ export const BooksTable = () => {
     }
     setCurrentId(id);
     setSearchParams({ q: searchQuery, details: id });
+  };
+
+  const serveLink = link => {
+    if (link.includes('play.google')) {
+      return 'Google Play';
+    } else if (link.includes('books.google')) {
+      return 'Google Books';
+    } else {
+      return link;
+    }
   };
   return (
     <div>
@@ -89,7 +100,9 @@ export const BooksTable = () => {
                       </StyledTableCell>
                       <StyledTableCell align="right">{item.id}</StyledTableCell>
                       <StyledTableCell align="right">
-                        <a href={infoLink}>{infoLink}</a>
+                        <a href={infoLink} rel="noreferrer">
+                          {serveLink(infoLink)}
+                        </a>
                       </StyledTableCell>
                     </StyledTableRow>
                     {item.id === currentDetails && <BooksDetails />}
