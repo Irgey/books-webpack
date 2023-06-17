@@ -32,7 +32,6 @@ export const BooksTable = () => {
   });
 
   useEffect(() => {
-    console.dir(searchQuery);
     searchQuery && getSearchedBooks();
   }, [searchQuery, getSearchedBooks]);
 
@@ -59,7 +58,7 @@ export const BooksTable = () => {
     <div>
       {tableBooks && searchQuery && (
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table aria-label="simple table">
             <TableHead>
               <StyledTableRow>
                 <StyledTableCell>

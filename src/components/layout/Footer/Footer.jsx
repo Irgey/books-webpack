@@ -21,7 +21,7 @@ export const Footer = () => {
   };
   return (
     <StyledFooter component="footer">
-      <StyledContainer>
+      <StyledContainer maxWidth="xl">
         <Typography sx={{ color: 'white' }}>
           &#169; 2023 Serhii Parfentiev
         </Typography>

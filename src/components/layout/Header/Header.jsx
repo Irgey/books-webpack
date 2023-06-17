@@ -94,6 +94,10 @@ export const Header = ({ query, setQuery, setSearchParams }) => {
       </MenuItem>
       <MenuItem
         onClick={() => {
+          if (query) {
+            handleMenuClose();
+            return;
+          }
           navigate('/books');
           handleMenuClose();
         }}
