@@ -4,23 +4,18 @@ import styled from '@emotion/styled';
 import { HomePage } from 'pages/HomePage';
 import { BooksPage } from 'pages/BooksPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
+import Breadcrumbs from './Breadcrumbs/Breadcrumbs';
+import { Layout } from './layout/Layout';
 
 export const App = () => {
   return (
-    <div>
-      <nav>
-        <StyledLink to="/" end>
-          Home
-        </StyledLink>
-        <StyledLink to="/books">Books</StyledLink>
-        <StyledLink to="/products">Products</StyledLink>
-      </nav>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        {' '}
         <Route path="books" element={<BooksPage />} />
         <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </div>
+      </Route>
+    </Routes>
   );
 };
 const StyledLink = styled(NavLink)`

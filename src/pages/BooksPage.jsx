@@ -1,35 +1,41 @@
 // Libs
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useSearchParams } from "react-router-dom";
-import React, { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { useSearchParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 // Mui components
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { IconButton, Skeleton, TextField, styled } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import {
+  FormControl,
+  IconButton,
+  Skeleton,
+  TextField,
+  styled,
+} from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 // Local
-import { searchByQuery } from "../services/books-api";
-import { BooksDetails } from "../components/BookDetails/BooksDetails";
+import { searchByQuery } from '../services/books-api';
+import { BooksDetails } from '../components/BookDetails/BooksDetails';
 
 export const BooksPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchQuery = searchParams.get("q");
-  const currentDetails = searchParams.get("details");
-  const [currentId, setCurrentId] = useState("");
-  const [query, setQuery] = useState("");
+  const searchQuery = searchParams.get('q');
+  const currentDetails = searchParams.get('details');
+  const [currentId, setCurrentId] = useState('');
+  const [query, setQuery] = useState('');
 
   const {
     data: tableBooks,
     isLoading,
     refetch: getSearchedBooks,
   } = useQuery({
-    queryKey: ["books"],
+    queryKey: ['books'],
     queryFn: () => searchByQuery(searchQuery),
     enabled: false,
   });
@@ -38,9 +44,9 @@ export const BooksPage = () => {
     console.dir(searchQuery);
     searchQuery && getSearchedBooks();
   }, [searchQuery, getSearchedBooks]);
-  const handleRowClick = (id) => {
+  const handleRowClick = id => {
     if (currentId === id) {
-      setCurrentId("");
+      setCurrentId('');
       setSearchParams({ q: searchQuery });
       return;
     }
@@ -52,8 +58,8 @@ export const BooksPage = () => {
     <>
       <ReactQueryDevtools />
       <div>
-        <form
-          onSubmit={(e) => {
+        <StyledForm
+          onSubmit={e => {
             e.preventDefault();
             setSearchParams({ q: query });
           }}
@@ -62,7 +68,7 @@ export const BooksPage = () => {
             id="outlined-basic"
             label="Type search query"
             variant="outlined"
-            onChange={(e) => {
+            onChange={e => {
               setQuery(e.target.value);
             }}
           />
@@ -75,34 +81,28 @@ export const BooksPage = () => {
           >
             <SearchIcon />
           </IconButton>
-          {/* <input
-            value={query}
-            type="text"
-            placeholder="Type book title that you wanna to search..."
-          /> */}
-          {/* <button disabled={query ? false : true}>Search</button> */}
-        </form>
+        </StyledForm>
         {tableBooks && searchQuery && (
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <StyledTableRow>
                   <StyledTableCell>
-                    {isLoading ? <Skeleton variant="text" /> : "Title"}
+                    {isLoading ? <Skeleton variant="text" /> : 'Title'}
                   </StyledTableCell>
                   <StyledTableCell align="right">
-                    {isLoading ? <Skeleton variant="text" /> : "Author"}
+                    {isLoading ? <Skeleton variant="text" /> : 'Author'}
                   </StyledTableCell>
                   <StyledTableCell align="right">
-                    {isLoading ? <Skeleton variant="text" /> : "ID"}
+                    {isLoading ? <Skeleton variant="text" /> : 'ID'}
                   </StyledTableCell>
                   <StyledTableCell align="right">
-                    {isLoading ? <Skeleton variant="text" /> : "Link"}
+                    {isLoading ? <Skeleton variant="text" /> : 'Link'}
                   </StyledTableCell>
                 </StyledTableRow>
               </TableHead>
               <TableBody>
-                {tableBooks.items.map((item) => {
+                {tableBooks.items.map(item => {
                   const {
                     id,
                     volumeInfo: { authors, title, infoLink },
@@ -114,14 +114,14 @@ export const BooksPage = () => {
                           handleRowClick(id);
                         }}
                         sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
+                          '&:last-child td, &:last-child th': { border: 0 },
                         }}
                       >
                         <StyledTableCell component="th" scope="row">
                           {title}
                         </StyledTableCell>
                         <StyledTableCell align="right">
-                          {authors?.join(", ")}
+                          {authors?.join(', ')}
                         </StyledTableCell>
                         <StyledTableCell align="right">
                           {item.id}
@@ -155,11 +155,13 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
+  '&:nth-of-type(odd)': {
     backgroundColor: theme.palette.action.hover,
   },
   // hide last border
-  "&:last-child td, &:last-child th": {
+  '&:last-child td, &:last-child th': {
     border: 0,
   },
 }));
+
+const StyledForm = styled('form')({ display: 'flex', alignItems: 'center' });

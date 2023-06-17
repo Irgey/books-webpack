@@ -20,7 +20,7 @@ export const BooksDetails = () => {
   return (
     <StyledTableRow>
       <StyledTableCell colSpan={4}>
-        <div data-aos="fade-up">
+        <div>
           {detailedData && (
             <>
               <h2>
@@ -31,7 +31,6 @@ export const BooksDetails = () => {
               </h2>
               <div className={s.contentWrapper}>
                 <div>
-                  {' '}
                   <img
                     alt={detailedData.volumeInfo.title}
                     src={detailedData.volumeInfo.imageLinks.thumbnail}
