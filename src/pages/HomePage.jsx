@@ -44,4 +44,3 @@ const StyledContainer = styled(Container)`
   align-items: center;
   flex-direction: column;
 `;
-const StyledSection = styled.section``;
