@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import { Header } from './Header/Header';
 import styled from '@emotion/styled';
 import { Footer } from './Footer/Footer';
+import { ReactComponent as BookPic } from '../../images/book.svg';
 function ScrollTop(props) {
   const { children } = props;
 
@@ -52,6 +53,7 @@ export const Layout = ({ query, setQuery, setSearchParams }) => {
       <StyledMain>
         {' '}
         <Outlet />
+        <StyledBookPic fill="#1976d2" width={250} height={250} />
       </StyledMain>
 
       <ScrollTop>
@@ -68,4 +70,10 @@ const StyledMain = styled.main`
   padding: 84px 24px 20px 24px;
   position: relative;
   min-height: calc(100vh - 150px);
+`;
+
+const StyledBookPic = styled(BookPic)`
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
 `;

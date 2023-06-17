@@ -203,6 +203,7 @@ export const Header = ({ query, setQuery, setSearchParams }) => {
 
 const Search = styled('form')(({ theme }) => ({
   position: 'relative',
+  display: 'flex',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   '&:hover': {
@@ -210,10 +211,9 @@ const Search = styled('form')(({ theme }) => ({
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
-  width: '100%',
+  width: 'auto',
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(3),
-    width: 'auto',
   },
 }));
 
