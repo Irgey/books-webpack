@@ -1,5 +1,5 @@
 import { Routes, Route, useSearchParams } from 'react-router-dom';
-
+import '@fontsource/roboto';
 import { BooksPage } from 'pages/BooksPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { Layout } from './layout/Layout';

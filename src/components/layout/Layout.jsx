@@ -6,7 +6,8 @@ import Fade from '@mui/material/Fade';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Box from '@mui/material/Box';
 import { Header } from './Header/Header';
-import { styled } from '@mui/material';
+import styled from '@emotion/styled';
+import { Footer } from './Footer/Footer';
 function ScrollTop(props) {
   const { children } = props;
 
@@ -58,11 +59,13 @@ export const Layout = ({ query, setQuery, setSearchParams }) => {
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>
-      <div>footer</div>
+      <Footer />
     </>
   );
 };
 
-const StyledMain = styled('main')({
-  padding: '84px 24px 20px 24px',
-});
+const StyledMain = styled.main`
+  padding: 84px 24px 20px 24px;
+  position: relative;
+  min-height: calc(100vh - 150px);
+`;
