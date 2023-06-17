@@ -58,7 +58,6 @@ export const Header = ({ query, setQuery, setSearchParams }) => {
   };
   const searchBooks = e => {
     e.preventDefault();
-    // console.log('INCLUDES', !location.pathname.includes('books'));
     if (!location.pathname.includes('books')) {
       console.log("I'M inside if statement");
       navigate('books');

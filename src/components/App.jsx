@@ -23,7 +23,10 @@ export const App = () => {
         }
       >
         <Route index element={<HomePage />} />
-        <Route path="books" element={<BooksPage />} />
+        <Route
+          path="books"
+          element={<BooksPage searchParams={searchParams} />}
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
