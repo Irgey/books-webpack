@@ -1,19 +1,21 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Breadcrumbs from 'components/Breadcrumbs/Breadcrumbs';
-import Slide from '@mui/material/Slide';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  InputBase,
+  MenuItem,
+  Menu,
+  Slide,
+  useScrollTrigger,
+} from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 function HideOnScroll(props) {
   const { children, window } = props;

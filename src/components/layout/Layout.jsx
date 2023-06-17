@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Fade from '@mui/material/Fade';
@@ -43,6 +43,8 @@ function ScrollTop(props) {
 }
 
 export const Layout = ({ query, setQuery, setSearchParams }) => {
+  const [searchParams] = useSearchParams();
+  const queryParam = searchParams.get('q');
   return (
     <>
       <Header
@@ -53,7 +55,7 @@ export const Layout = ({ query, setQuery, setSearchParams }) => {
       <StyledMain>
         {' '}
         <Outlet />
-        <StyledBookPic fill="#1976d2" width={250} height={250} />
+        {!queryParam && <StyledBookPic />}{' '}
       </StyledMain>
 
       <ScrollTop>
@@ -67,13 +69,21 @@ export const Layout = ({ query, setQuery, setSearchParams }) => {
 };
 
 const StyledMain = styled.main`
-  padding: 84px 24px 20px 24px;
+  padding-top: 84px;
+  padding-bottom: 24px;
   position: relative;
-  min-height: calc(100vh - 150px);
+  min-height: calc(100vh - 120px);
 `;
 
 const StyledBookPic = styled(BookPic)`
+  fill: #1976d2;
+  width: 250px;
+  height: 250px;
   position: absolute;
   right: 5px;
   bottom: 5px;
+  @media screen and (max-width: 480px) {
+    width: 120px;
+    height: 120px;
+  }
 `;

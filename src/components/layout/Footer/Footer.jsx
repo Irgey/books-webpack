@@ -47,7 +47,7 @@ export const Footer = () => {
 
 const StyledFooter = styled(Box)`
   width: 100%;
-  height: 150px;
+  height: 120px;
   background-color: #1976d2;
   display: flex;
   align-items: center;
