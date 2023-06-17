@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/books-webpack/static/css/main.5c04c857.css",
-    "main.js": "/books-webpack/static/js/main.bcca458e.js",
+    "main.js": "/books-webpack/static/js/main.c496590a.js",
     "index.html": "/books-webpack/index.html",
     "main.5c04c857.css.map": "/books-webpack/static/css/main.5c04c857.css.map",
-    "main.bcca458e.js.map": "/books-webpack/static/js/main.bcca458e.js.map"
+    "main.c496590a.js.map": "/books-webpack/static/js/main.c496590a.js.map"
   },
   "entrypoints": [
     "static/css/main.5c04c857.css",
-    "static/js/main.bcca458e.js"
+    "static/js/main.c496590a.js"
   ]
 }
