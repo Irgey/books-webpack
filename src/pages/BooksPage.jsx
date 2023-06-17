@@ -11,13 +11,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import {
-  FormControl,
-  IconButton,
-  Skeleton,
-  TextField,
-  styled,
-} from '@mui/material';
+import { IconButton, Skeleton, TextField, styled } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 // Local
 import { searchByQuery } from '../services/books-api';
