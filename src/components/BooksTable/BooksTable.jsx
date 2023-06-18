@@ -1,5 +1,5 @@
 // Libs
-import React, { useEffect, useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 // Mui components
 import {
@@ -65,7 +65,7 @@ export const BooksTable = () => {
                   volumeInfo: { authors, title, infoLink },
                 } = item;
                 return (
-                  <React.Fragment key={id}>
+                  <Fragment key={id}>
                     <StyledTableRow
                       onClick={() => {
                         handleRowClick(id);
@@ -88,7 +88,7 @@ export const BooksTable = () => {
                       </StyledTableCell>
                     </StyledTableRow>
                     {item.id === detailsParam && <BooksDetails />}
-                  </React.Fragment>
+                  </Fragment>
                 );
               })}
             </TableBody>
