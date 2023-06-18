@@ -1,9 +1,26 @@
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import rehypeRaw from 'rehype-raw';
-import { StyledTableCell, StyledTableRowDetails } from './BookDetails.styled';
+import {
+  StyledImg,
+  StyledTableCell,
+  StyledTableRowDetails,
+} from './BookDetails.styled';
 
 import s from '../../pages/styles.module.css';
 export const BooksDetails = ({ detailedData }) => {
+  const {
+    volumeInfo: {
+      publisher,
+      publishedDate,
+      description,
+      imageLinks,
+      title,
+      subtitle,
+      authors,
+      printType,
+      pageCount,
+    },
+  } = detailedData;
   return (
     <StyledTableRowDetails>
       <StyledTableCell colSpan={4}>
@@ -11,53 +28,54 @@ export const BooksDetails = ({ detailedData }) => {
           {detailedData && (
             <>
               <h2>
-                <span>{detailedData.volumeInfo.title}</span>
-                {detailedData.volumeInfo.subtitle && (
-                  <span>,{detailedData.volumeInfo.subtitle}</span>
-                )}
+                <span>{title}</span>
+                {subtitle && <span>,{subtitle}</span>}
               </h2>
               <div className={s.contentWrapper}>
                 <div>
-                  <img
-                    alt={detailedData.volumeInfo.title}
-                    src={detailedData.volumeInfo.imageLinks.thumbnail}
+                  <StyledImg
+                    alt={title}
+                    src={
+                      imageLinks.medium ||
+                      imageLinks.small ||
+                      imageLinks.thumbnail
+                    }
                   />
                 </div>
                 <ul className={s.contentList}>
-                  {detailedData.volumeInfo.authors && (
+                  {authors && (
                     <li>
                       <p>
                         <b>Author: </b>
-                        {detailedData.volumeInfo.authors.join(', ')}
+                        {authors.join(', ')}
                       </p>
                     </li>
                   )}
-                  {detailedData.volumeInfo.publisher && (
+                  {publisher && (
                     <li>
                       <p>
                         <b>Publisher: </b>
-                        {detailedData.volumeInfo.publisher},
-                        {detailedData.volumeInfo.publishedDate}
+                        {publisher},{publishedDate}
                       </p>
                     </li>
                   )}
-                  {detailedData.volumeInfo.printType && (
+                  {printType && (
                     <li>
                       <p>
                         <b>Print type: </b>
-                        {detailedData.volumeInfo.printType}
+                        {printType}
                       </p>
                     </li>
                   )}
-                  {detailedData.volumeInfo.pageCount && (
+                  {pageCount && (
                     <li>
                       <p>
                         <b>Page count: </b>
-                        {detailedData.volumeInfo.pageCount}
+                        {pageCount}
                       </p>
                     </li>
                   )}
-                  {detailedData.volumeInfo.description && (
+                  {description && (
                     <li>
                       {' '}
                       <b>Description: </b>
@@ -65,7 +83,7 @@ export const BooksDetails = ({ detailedData }) => {
                         className={s.descrContainer}
                         rehypePlugins={[rehypeRaw]}
                       >
-                        {detailedData.volumeInfo.description}
+                        {description}
                       </ReactMarkdown>
                     </li>
                   )}

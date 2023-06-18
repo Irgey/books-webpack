@@ -19,7 +19,7 @@ export const MobileBooksList = ({
   return (
     books && (
       <List
-        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+        sx={{ width: '100%', maxWidth: 480, bgcolor: 'background.paper' }}
         aria-labelledby="nested-list-subheader"
         subheader={
           <ListSubheader id="nested-list-subheader">

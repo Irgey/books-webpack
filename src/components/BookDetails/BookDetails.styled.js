@@ -15,3 +15,7 @@ export const StyledTableRowDetails = styled(TableRow)(({ theme }) => ({
     transition: 'background-color 300ms ease',
   },
 }));
+
+export const StyledImg = styled('img')({
+  maxWidth: '20vw',
+});

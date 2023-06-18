@@ -10,32 +10,47 @@ import { StyledDescriptionContainer } from './MobileDetailsCard.styled';
 // import Collapse from '@mui/material/Collapse';
 
 export const MobileDetailsCard = ({ detailedData }) => {
+  const {
+    volumeInfo: {
+      publisher,
+      publishedDate,
+      description,
+      imageLinks,
+      title,
+      infoLink,
+    },
+  } = detailedData;
   return (
     // <Collapse in={detailedData} timeout="auto" unmountOnExit>
     detailedData && (
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 480 }}>
         <CardActionArea>
           <CardMedia
             component="img"
             height="140"
-            image={detailedData.volumeInfo.imageLinks.thumbnail}
-            alt={detailedData.volumeInfo.title}
+            image={
+              imageLinks.medium || imageLinks.small || imageLinks.thumbnail
+            }
+            alt={title}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {detailedData.volumeInfo.publisher},
-              {detailedData.volumeInfo.publishedDate}
-            </Typography>
-            <StyledDescriptionContainer>
-              <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-                {detailedData.volumeInfo.description}
-              </ReactMarkdown>
-            </StyledDescriptionContainer>
+            {publisher && (
+              <Typography gutterBottom variant="h5" component="div">
+                {publisher},{publishedDate}
+              </Typography>
+            )}
+            {description && (
+              <StyledDescriptionContainer>
+                <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                  {description}
+                </ReactMarkdown>
+              </StyledDescriptionContainer>
+            )}
           </CardContent>
         </CardActionArea>
         <CardActions>
           <Button size="small" color="primary">
-            {serveLink(detailedData.volumeInfo.infoLink)}
+            {serveLink(infoLink)}
           </Button>
         </CardActions>
       </Card>

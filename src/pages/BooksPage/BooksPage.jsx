@@ -16,7 +16,7 @@ import { useMediaQuery } from 'react-responsive';
 export const BooksPage = ({ query }) => {
   const { queryParam, setSearchParams, detailsParam } = useBooksContext();
   const [currentId, setCurrentId] = useState('');
-  const isMobile = useMediaQuery({ query: '(max-width: 480px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 490px)' });
   const { data: books, isLoading } = useQuery({
     queryKey: ['books', queryParam],
     queryFn: () => searchByQuery(queryParam.trim().split(' ').join('+')),
