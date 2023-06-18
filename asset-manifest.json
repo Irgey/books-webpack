@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/books-webpack/static/css/main.5e7ffcc6.css",
-    "main.js": "/books-webpack/static/js/main.f625be26.js",
+    "main.css": "/books-webpack/static/css/main.364c2ed4.css",
+    "main.js": "/books-webpack/static/js/main.eaf799a0.js",
     "static/media/book.svg": "/books-webpack/static/media/book.40d431f1418e57b86f4d91e5797a4fe3.svg",
     "static/media/roboto-latin-400-normal.woff2": "/books-webpack/static/media/roboto-latin-400-normal.b009a76ad6afe4ebd301.woff2",
     "static/media/roboto-cyrillic-ext-400-normal.woff2": "/books-webpack/static/media/roboto-cyrillic-ext-400-normal.804378952da8a10faae2.woff2",
@@ -18,11 +18,11 @@
     "static/media/roboto-greek-ext-400-normal.woff2": "/books-webpack/static/media/roboto-greek-ext-400-normal.169619821ea93019d1bb.woff2",
     "static/media/roboto-greek-ext-400-normal.woff": "/books-webpack/static/media/roboto-greek-ext-400-normal.f708607d2a7290fb8bfa.woff",
     "index.html": "/books-webpack/index.html",
-    "main.5e7ffcc6.css.map": "/books-webpack/static/css/main.5e7ffcc6.css.map",
-    "main.f625be26.js.map": "/books-webpack/static/js/main.f625be26.js.map"
+    "main.364c2ed4.css.map": "/books-webpack/static/css/main.364c2ed4.css.map",
+    "main.eaf799a0.js.map": "/books-webpack/static/js/main.eaf799a0.js.map"
   },
   "entrypoints": [
-    "static/css/main.5e7ffcc6.css",
-    "static/js/main.f625be26.js"
+    "static/css/main.364c2ed4.css",
+    "static/js/main.eaf799a0.js"
   ]
 }
