@@ -2,7 +2,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import Breadcrumbs from 'components/Breadcrumbs/Breadcrumbs';
 import {
   AppBar,
   Box,
@@ -17,6 +16,7 @@ import {
 import { useState } from 'react';
 import { useBooksContext } from 'hooks/booksContext';
 import { Search, StyledInputBase } from './Header.styled';
+import { Breadcrumbs } from 'components/Breadcrumbs/Breadcrumbs';
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -45,7 +45,7 @@ export const Header = () => {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const { setSearchParams } = useBooksContext();
+  const { setSearchParams, queryParam } = useBooksContext();
   const handleProfileMenuOpen = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -97,7 +97,7 @@ export const Header = () => {
       </MenuItem>
       <MenuItem
         onClick={() => {
-          if (query) {
+          if (queryParam) {
             handleMenuClose();
             return;
           }
@@ -186,7 +186,7 @@ export const Header = () => {
             </Search>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <Breadcrumbs />
+              <Breadcrumbs handleMobileMenuClose={handleMobileMenuClose} />
             </Box>
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
               <IconButton

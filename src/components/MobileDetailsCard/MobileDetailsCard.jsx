@@ -66,9 +66,12 @@ export const MobileDetailsCard = ({ detailedData }) => {
   );
 };
 
+// MobileDetailsCard.propTypes = {
+//   detailedData: PropTypes.shape({
+//     id: PropTypes.string.isRequired(),
+//     volumeInfo: PropTypes.objectOf(PropTypes.string),
+//   }).isRequired(),
+// };
 MobileDetailsCard.propTypes = {
-  detailedData: PropTypes.shape({
-    id: PropTypes.string.isRequired(),
-    volumeInfo: PropTypes.objectOf(PropTypes.string),
-  }).isRequired(),
+  detailedData: PropTypes.object,
 };

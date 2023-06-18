@@ -4,7 +4,7 @@ import { Button, Breadcrumbs as MUIBreadcrumbs } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useBooksContext } from 'hooks/booksContext';
 
-const Breadcrumbs = () => {
+export const Breadcrumbs = ({ handleMobileMenuClose }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { setSearchParams, queryParam, detailsParam } = useBooksContext();
@@ -23,6 +23,7 @@ const Breadcrumbs = () => {
           variant="text"
           onClick={() => {
             navigate('/');
+            handleMobileMenuClose();
           }}
         >
           Home
@@ -36,6 +37,7 @@ const Breadcrumbs = () => {
             variant="text"
             onClick={() => {
               navigate(crumb);
+              handleMobileMenuClose();
             }}
           >
             {crumb}
@@ -47,6 +49,7 @@ const Breadcrumbs = () => {
           variant="text"
           onClick={() => {
             setSearchParams({ q: queryParam });
+            handleMobileMenuClose();
           }}
         >
           {queryParam}
@@ -58,6 +61,7 @@ const Breadcrumbs = () => {
           variant="text"
           onClick={() => {
             setSearchParams({ q: queryParam, details: detailsParam });
+            handleMobileMenuClose();
           }}
         >
           {detailsParam}
@@ -66,5 +70,3 @@ const Breadcrumbs = () => {
     </MUIBreadcrumbs>
   );
 };
-
-export default Breadcrumbs;

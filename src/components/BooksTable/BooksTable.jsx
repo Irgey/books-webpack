@@ -94,9 +94,12 @@ export const BooksTable = ({
   );
 };
 
+// BooksTable.propTypes = {
+//   detailedData: PropTypes.shape({
+//     id: PropTypes.string.isRequired(),
+//     volumeInfo: PropTypes.objectOf(PropTypes.string),
+//   }).isRequired(),
+// };
 BooksTable.propTypes = {
-  detailedData: PropTypes.shape({
-    id: PropTypes.string.isRequired(),
-    volumeInfo: PropTypes.objectOf(PropTypes.string),
-  }).isRequired(),
+  detailedData: PropTypes.object,
 };
