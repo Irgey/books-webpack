@@ -1,19 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
 import s from '../../pages/styles.module.css';
-import { getFullInfoById } from '../../services/books-api';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import rehypeRaw from 'rehype-raw';
-import { useBooksContext } from 'hooks/booksContext';
 import { StyledTableCell, StyledTableRow } from './BookDetails.styled';
 
-export const BooksDetails = () => {
-  const { detailsParam: bookId } = useBooksContext();
-  const { data: detailedData } = useQuery({
-    queryKey: ['bookInfo', bookId],
-    queryFn: () => getFullInfoById(bookId),
-    keepPreviousData: true,
-  });
-
+export const BooksDetails = ({ detailedData }) => {
   return (
     <StyledTableRow>
       <StyledTableCell colSpan={4}>

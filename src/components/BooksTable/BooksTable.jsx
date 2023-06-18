@@ -1,6 +1,5 @@
 // Libs
-import { Fragment, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { Fragment } from 'react';
 // Mui components
 import {
   Skeleton,
@@ -11,35 +10,21 @@ import {
   Paper,
 } from '@mui/material';
 // Local
-import { searchByQuery } from 'services/books-api';
 import { BooksDetails } from 'components/BookDetails/BooksDetails';
-import { useBooksContext } from 'hooks/booksContext';
 import { StyledTableCell, StyledTableRow } from './BooksTable.styled';
-import { serveLink } from 'utils/serveLink';
 
-export const BooksTable = () => {
-  const { queryParam, setSearchParams, detailsParam } = useBooksContext();
-  const [currentId, setCurrentId] = useState('');
-
-  const { data: tableBooks, isLoading } = useQuery({
-    queryKey: ['books', queryParam],
-    queryFn: () => searchByQuery(queryParam.trim().split(' ').join('+')),
-    enabled: Boolean(queryParam),
-  });
-
-  const handleRowClick = id => {
-    if (currentId === id) {
-      setCurrentId('');
-      setSearchParams({ q: queryParam });
-      return;
-    }
-    setCurrentId(id);
-    setSearchParams({ q: queryParam, details: id });
-  };
-
+export const BooksTable = ({
+  books,
+  detailedData,
+  queryParam,
+  isLoading,
+  handleRowClick,
+  detailsParam,
+  serveLink,
+}) => {
   return (
     <div>
-      {tableBooks && queryParam && (
+      {books && queryParam && (
         <TableContainer component={Paper}>
           <Table aria-label="simple table">
             <TableHead>
@@ -59,7 +44,7 @@ export const BooksTable = () => {
               </StyledTableRow>
             </TableHead>
             <TableBody>
-              {tableBooks.items.map(item => {
+              {books.items.map(item => {
                 const {
                   id,
                   volumeInfo: { authors, title, infoLink },
@@ -87,7 +72,9 @@ export const BooksTable = () => {
                         </a>
                       </StyledTableCell>
                     </StyledTableRow>
-                    {item.id === detailsParam && <BooksDetails />}
+                    {item.id === detailsParam && (
+                      <BooksDetails detailedData={detailedData} />
+                    )}
                   </Fragment>
                 );
               })}

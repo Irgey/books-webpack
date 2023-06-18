@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter } from 'react-router-dom';
-import { Router } from './Routes/Routes';
 import '@fontsource/roboto';
+import { Router } from './Router/Router';
 
 export const App = () => {
   const queryClient = new QueryClient();
