@@ -1,11 +1,11 @@
-import s from '../../pages/styles.module.css';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import rehypeRaw from 'rehype-raw';
-import { StyledTableCell, StyledTableRow } from './BookDetails.styled';
+import { StyledTableCell, StyledTableRowDetails } from './BookDetails.styled';
 
+import s from '../../pages/styles.module.css';
 export const BooksDetails = ({ detailedData }) => {
   return (
-    <StyledTableRow>
+    <StyledTableRowDetails>
       <StyledTableCell colSpan={4}>
         <div>
           {detailedData && (
@@ -66,7 +66,7 @@ export const BooksDetails = ({ detailedData }) => {
                         rehypePlugins={[rehypeRaw]}
                       >
                         {detailedData.volumeInfo.description}
-                      </ReactMarkdown>{' '}
+                      </ReactMarkdown>
                     </li>
                   )}
                 </ul>
@@ -75,6 +75,6 @@ export const BooksDetails = ({ detailedData }) => {
           )}
         </div>
       </StyledTableCell>
-    </StyledTableRow>
+    </StyledTableRowDetails>
   );
 };

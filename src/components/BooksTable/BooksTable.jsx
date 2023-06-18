@@ -23,65 +23,64 @@ export const BooksTable = ({
   serveLink,
 }) => {
   return (
-    <div>
-      {books && queryParam && (
-        <TableContainer component={Paper}>
-          <Table aria-label="simple table">
-            <TableHead>
-              <StyledTableRow>
-                <StyledTableCell>
-                  {isLoading ? <Skeleton variant="text" /> : 'Title'}
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {isLoading ? <Skeleton variant="text" /> : 'Author'}
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {isLoading ? <Skeleton variant="text" /> : 'ID'}
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {isLoading ? <Skeleton variant="text" /> : 'Link'}
-                </StyledTableCell>
-              </StyledTableRow>
-            </TableHead>
-            <TableBody>
-              {books.items.map(item => {
-                const {
-                  id,
-                  volumeInfo: { authors, title, infoLink },
-                } = item;
-                return (
-                  <Fragment key={id}>
-                    <StyledTableRow
-                      onClick={() => {
-                        handleRowClick(id);
-                      }}
-                      sx={{
-                        '&:last-child td, &:last-child th': { border: 0 },
-                      }}
-                    >
-                      <StyledTableCell component="th" scope="row">
-                        {title}
-                      </StyledTableCell>
-                      <StyledTableCell align="right">
-                        {authors?.join(', ')}
-                      </StyledTableCell>
-                      <StyledTableCell align="right">{item.id}</StyledTableCell>
-                      <StyledTableCell align="right">
-                        <a href={infoLink} rel="noreferrer">
-                          {serveLink(infoLink)}
-                        </a>
-                      </StyledTableCell>
-                    </StyledTableRow>
-                    {item.id === detailsParam && (
-                      <BooksDetails detailedData={detailedData} />
-                    )}
-                  </Fragment>
-                );
-              })}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      )}
-    </div>
+    books && (
+      <TableContainer component={Paper}>
+        <Table aria-label="simple table">
+          <TableHead>
+            <StyledTableRow>
+              <StyledTableCell>
+                {isLoading ? <Skeleton variant="text" /> : 'Title'}
+              </StyledTableCell>
+              <StyledTableCell align="right">
+                {isLoading ? <Skeleton variant="text" /> : 'Author'}
+              </StyledTableCell>
+              <StyledTableCell align="right">
+                {isLoading ? <Skeleton variant="text" /> : 'ID'}
+              </StyledTableCell>
+              <StyledTableCell align="right">
+                {isLoading ? <Skeleton variant="text" /> : 'Link'}
+              </StyledTableCell>
+            </StyledTableRow>
+          </TableHead>
+          <TableBody>
+            {books.items.map(item => {
+              const {
+                id,
+                volumeInfo: { authors, title, infoLink },
+              } = item;
+              return (
+                <Fragment key={id}>
+                  <StyledTableRow
+                    onClick={() => {
+                      handleRowClick(id);
+                    }}
+                    sx={{
+                      '&:last-child td, &:last-child th': { border: 0 },
+                      ':hover': {},
+                    }}
+                  >
+                    <StyledTableCell component="th" scope="row">
+                      {title}
+                    </StyledTableCell>
+                    <StyledTableCell align="right">
+                      {authors?.join(', ')}
+                    </StyledTableCell>
+                    <StyledTableCell align="right">{item.id}</StyledTableCell>
+                    <StyledTableCell align="right">
+                      <a href={infoLink} rel="noreferrer">
+                        {serveLink(infoLink)}
+                      </a>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  {id === detailsParam && (
+                    <BooksDetails detailedData={detailedData} />
+                  )}
+                </Fragment>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    )
   );
 };

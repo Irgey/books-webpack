@@ -10,11 +10,13 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getFullInfoById, searchByQuery } from 'services/books-api';
 import { serveLink } from 'utils/serveLink';
+import { MobileBooksList } from 'components/MobileBooksList/MobileBooksList';
+import { useMediaQuery } from 'react-responsive';
 
 export const BooksPage = ({ query }) => {
   const { queryParam, setSearchParams, detailsParam } = useBooksContext();
   const [currentId, setCurrentId] = useState('');
-
+  const isMobile = useMediaQuery({ query: '(max-width: 480px)' });
   const { data: books, isLoading } = useQuery({
     queryKey: ['books', queryParam],
     queryFn: () => searchByQuery(queryParam.trim().split(' ').join('+')),
@@ -43,19 +45,33 @@ export const BooksPage = ({ query }) => {
       <ReactQueryDevtools />
       <Container maxWidth="xl">
         {!queryParam && (
-          <Typography>
-            Type your search query on search field <ArrowUpwardIcon />
-          </Typography>
+          <>
+            <Typography>
+              Type your search query on search field <ArrowUpwardIcon />
+            </Typography>
+          </>
         )}
-        <BooksTable
-          books={books}
-          queryParam={queryParam}
-          isLoading={isLoading}
-          handleRowClick={handleRowClick}
-          detailedData={detailedData}
-          detailsParam={detailsParam}
-          serveLink={serveLink}
-        />
+        {isMobile ? (
+          <MobileBooksList
+            books={books}
+            queryParam={queryParam}
+            isLoading={isLoading}
+            handleRowClick={handleRowClick}
+            detailedData={detailedData}
+            detailsParam={detailsParam}
+            serveLink={serveLink}
+          />
+        ) : (
+          <BooksTable
+            books={books}
+            queryParam={queryParam}
+            isLoading={isLoading}
+            handleRowClick={handleRowClick}
+            detailedData={detailedData}
+            detailsParam={detailsParam}
+            serveLink={serveLink}
+          />
+        )}
       </Container>
     </>
   );
