@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import rehypeRaw from 'rehype-raw';
 import {
@@ -95,4 +96,11 @@ export const BooksDetails = ({ detailedData }) => {
       </StyledTableCell>
     </StyledTableRowDetails>
   );
+};
+
+BooksDetails.propTypes = {
+  detailedData: PropTypes.shape({
+    id: PropTypes.string.isRequired(),
+    volumeInfo: PropTypes.objectOf(PropTypes.string),
+  }).isRequired(),
 };

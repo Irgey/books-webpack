@@ -4,7 +4,7 @@ import { styled } from '@mui/material';
 
 export const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.primary.main,
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -21,7 +21,9 @@ export const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
   '&:hover': {
-    backgroundColor: theme.palette.info.light,
+    backgroundColor: theme.palette.primary.main,
     cursor: 'pointer',
   },
+
+  transition: 'background-color 300ms ease-in-out',
 }));

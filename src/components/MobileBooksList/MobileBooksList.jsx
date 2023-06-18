@@ -1,7 +1,10 @@
-import ListSubheader from '@mui/material/ListSubheader';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
+import PropTypes from 'prop-types';
+import {
+  List,
+  ListSubheader,
+  ListItemButton,
+  ListItemText,
+} from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { MobileDetailsCard } from 'components/MobileDetailsCard/MobileDetailsCard';
@@ -51,4 +54,11 @@ export const MobileBooksList = ({
       </List>
     )
   );
+};
+
+MobileBooksList.propTypes = {
+  detailedData: PropTypes.shape({
+    id: PropTypes.string.isRequired(),
+    volumeInfo: PropTypes.objectOf(PropTypes.string),
+  }).isRequired(),
 };

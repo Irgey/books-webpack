@@ -1,4 +1,5 @@
 // Libs
+import PropTypes from 'prop-types';
 import { Fragment } from 'react';
 // Mui components
 import {
@@ -8,6 +9,7 @@ import {
   TableContainer,
   TableHead,
   Paper,
+  Link,
 } from '@mui/material';
 // Local
 import { BooksDetails } from 'components/BookDetails/BooksDetails';
@@ -48,6 +50,7 @@ export const BooksTable = ({
                 id,
                 volumeInfo: { authors, title, infoLink },
               } = item;
+              const servedLink = serveLink(infoLink);
               return (
                 <Fragment key={id}>
                   <StyledTableRow
@@ -67,9 +70,15 @@ export const BooksTable = ({
                     </StyledTableCell>
                     <StyledTableCell align="right">{item.id}</StyledTableCell>
                     <StyledTableCell align="right">
-                      <a href={infoLink} rel="noreferrer">
-                        {serveLink(infoLink)}
-                      </a>
+                      <Link
+                        href={infoLink}
+                        rel="noreferrer nofollow"
+                        color="inherit"
+                        underline="hover"
+                        aria-label={`${servedLink} link`}
+                      >
+                        {servedLink}
+                      </Link>
                     </StyledTableCell>
                   </StyledTableRow>
                   {id === detailsParam && (
@@ -83,4 +92,11 @@ export const BooksTable = ({
       </TableContainer>
     )
   );
+};
+
+BooksTable.propTypes = {
+  detailedData: PropTypes.shape({
+    id: PropTypes.string.isRequired(),
+    volumeInfo: PropTypes.objectOf(PropTypes.string),
+  }).isRequired(),
 };

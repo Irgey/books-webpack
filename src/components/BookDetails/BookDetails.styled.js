@@ -11,9 +11,6 @@ export const StyledTableRowDetails = styled(TableRow)(({ theme }) => ({
   '&:last-child td, &:last-child th': {
     border: 0,
   },
-  '.Mui': {
-    transition: 'background-color 300ms ease',
-  },
 }));
 
 export const StyledImg = styled('img')({
