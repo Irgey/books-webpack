@@ -1,14 +1,13 @@
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Button, Breadcrumbs as MUIBreadcrumbs } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { useBooksContext } from 'hooks/booksContext';
 
 const Breadcrumbs = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const searchQuery = searchParams.get('q');
-  const currentDetails = searchParams.get('details');
+  const { setSearchParams, queryParam, detailsParam } = useBooksContext();
 
   let pathCrumbs = location.pathname
     .split('/')
@@ -42,26 +41,26 @@ const Breadcrumbs = () => {
             {crumb}
           </Button>
         ))}
-      {searchQuery && (
+      {queryParam && (
         <Button
           sx={{ color: 'white' }}
           variant="text"
           onClick={() => {
-            setSearchParams({ q: searchQuery });
+            setSearchParams({ q: queryParam });
           }}
         >
-          {searchQuery}
+          {queryParam}
         </Button>
       )}
-      {currentDetails && (
+      {detailsParam && (
         <Button
           sx={{ color: 'white' }}
           variant="text"
           onClick={() => {
-            setSearchParams({ q: searchQuery, details: currentDetails });
+            setSearchParams({ q: queryParam, details: detailsParam });
           }}
         >
-          {currentDetails}
+          {detailsParam}
         </Button>
       )}
     </MUIBreadcrumbs>

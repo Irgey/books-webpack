@@ -1,15 +1,13 @@
-import React from 'react';
-import { Outlet, useSearchParams } from 'react-router-dom';
-import Fab from '@mui/material/Fab';
+import { Outlet } from 'react-router-dom';
+import { Fab, Fade, Box } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import Fade from '@mui/material/Fade';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
-import Box from '@mui/material/Box';
 import { Header } from './Header/Header';
-import styled from '@emotion/styled';
 import { Footer } from './Footer/Footer';
-import { ReactComponent as BookPic } from '../../images/book.svg';
-function ScrollTop(props) {
+import { useBooksContext } from 'hooks/booksContext';
+import { StyledBookPic, StyledMain } from './Layout.styled';
+
+const ScrollTop = props => {
   const { children } = props;
 
   const trigger = useScrollTrigger({
@@ -40,22 +38,16 @@ function ScrollTop(props) {
       </Box>
     </Fade>
   );
-}
+};
 
-export const Layout = ({ query, setQuery, setSearchParams }) => {
-  const [searchParams] = useSearchParams();
-  const queryParam = searchParams.get('q');
+export const Layout = () => {
+  const { queryParam } = useBooksContext();
   return (
     <>
-      <Header
-        query={query}
-        setQuery={setQuery}
-        setSearchParams={setSearchParams}
-      />
+      <Header />
       <StyledMain>
-        {' '}
         <Outlet />
-        {!queryParam && <StyledBookPic />}{' '}
+        {!queryParam && <StyledBookPic />}
       </StyledMain>
 
       <ScrollTop>
@@ -67,23 +59,3 @@ export const Layout = ({ query, setQuery, setSearchParams }) => {
     </>
   );
 };
-
-const StyledMain = styled.main`
-  padding-top: 84px;
-  padding-bottom: 24px;
-  position: relative;
-  min-height: calc(100vh - 120px);
-`;
-
-const StyledBookPic = styled(BookPic)`
-  fill: #1976d2;
-  width: 250px;
-  height: 250px;
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
-  @media screen and (max-width: 480px) {
-    width: 120px;
-    height: 120px;
-  }
-`;

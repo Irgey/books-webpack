@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { useLocation, useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
@@ -10,13 +9,15 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  InputBase,
   MenuItem,
   Menu,
   Slide,
   useScrollTrigger,
 } from '@mui/material';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useBooksContext } from 'hooks/booksContext';
+import { Search, StyledInputBase } from './Header.styled';
+
 function HideOnScroll(props) {
   const { children, window } = props;
   const trigger = useScrollTrigger({
@@ -35,14 +36,16 @@ function HideOnScroll(props) {
   );
 }
 
-export const Header = ({ query, setQuery, setSearchParams }) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+export const Header = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const [query, setQuery] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  const { setSearchParams } = useBooksContext();
   const handleProfileMenuOpen = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -65,7 +68,7 @@ export const Header = ({ query, setQuery, setSearchParams }) => {
       console.log("I'M inside if statement");
       navigate('books');
     }
-    setSearchParams({ q: query.trim() });
+    setSearchParams({ q: query.trim().toLowerCase() });
   };
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -132,7 +135,6 @@ export const Header = ({ query, setQuery, setSearchParams }) => {
   return (
     <HideOnScroll>
       <Box sx={{ flexGrow: 1 }}>
-        {' '}
         <AppBar position="fixed">
           <Toolbar>
             <IconButton
@@ -206,33 +208,3 @@ export const Header = ({ query, setQuery, setSearchParams }) => {
     </HideOnScroll>
   );
 };
-
-const Search = styled('form')(({ theme }) => ({
-  position: 'relative',
-  display: 'flex',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: 'auto',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-  },
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: '1em',
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));

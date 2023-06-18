@@ -1,16 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableRow from '@mui/material/TableRow';
 import s from '../../pages/styles.module.css';
 import { getFullInfoById } from '../../services/books-api';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import rehypeRaw from 'rehype-raw';
-import { styled } from '@mui/material';
-import { useSearchParams } from 'react-router-dom';
+import { useBooksContext } from 'hooks/booksContext';
+import { StyledTableCell, StyledTableRow } from './BookDetails.styled';
 
 export const BooksDetails = () => {
-  const [searchParams] = useSearchParams();
-  const bookId = searchParams.get('details');
+  const { detailsParam: bookId } = useBooksContext();
   const { data: detailedData } = useQuery({
     queryKey: ['bookInfo', bookId],
     queryFn: () => getFullInfoById(bookId),
@@ -91,23 +88,3 @@ export const BooksDetails = () => {
     </StyledTableRow>
   );
 };
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.primary.light,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));

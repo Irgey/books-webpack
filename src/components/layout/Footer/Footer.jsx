@@ -1,24 +1,14 @@
-import styled from '@emotion/styled';
-import { Box, Typography, Container, Link } from '@mui/material';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TelegramIcon from '@mui/icons-material/Telegram';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { Typography } from '@mui/material';
 
 import socials from '../../../data/socials.json';
+import {
+  StyledContainer,
+  StyledFooter,
+  StyledLink,
+  StyledSocialsList,
+} from './Footer.styled';
+import { serveIcon } from 'utils/serveIcon';
 export const Footer = () => {
-  const serveIcon = name => {
-    const lowerName = name.toLowerCase();
-    if (lowerName === 'github') {
-      return <GitHubIcon sx={{ color: 'white' }} />;
-    } else if (lowerName === 'linkedin') {
-      return <LinkedInIcon sx={{ color: 'white' }} />;
-    } else if (lowerName === 'telegram') {
-      return <TelegramIcon sx={{ color: 'white' }} />;
-    } else if (lowerName === 'facebook') {
-      return <FacebookIcon sx={{ color: 'white' }} />;
-    }
-  };
   return (
     <StyledFooter component="footer">
       <StyledContainer maxWidth="xl">
@@ -42,34 +32,3 @@ export const Footer = () => {
     </StyledFooter>
   );
 };
-
-const StyledFooter = styled(Box)`
-  width: 100%;
-  height: 120px;
-  background-color: #1976d2;
-  display: flex;
-  align-items: center;
-`;
-const StyledSocialsList = styled.ul`
-  display: flex;
-`;
-const StyledContainer = styled(Container)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  @media screen and (max-width: 480px) {
-    flex-direction: column;
-  }
-`;
-const StyledLink = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  transition: background-color 300ms ease;
-  &:hover {
-    background-color: #1d86ef;
-  }
-`;

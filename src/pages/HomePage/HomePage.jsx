@@ -1,6 +1,6 @@
 import { Button, Typography, Container } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import styled from '@emotion/styled';
+import { StyledContainer, StyledSection } from './HomePage.styled';
 export const HomePage = () => {
   const navigate = useNavigate();
   return (
@@ -40,13 +40,3 @@ export const HomePage = () => {
     </>
   );
 };
-
-const StyledContainer = styled(Container)`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-`;
-const StyledSection = styled.section`
-  padding-top: 40px;
-  padding-bottom: 40px;
-`;
