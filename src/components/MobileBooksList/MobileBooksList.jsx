@@ -56,12 +56,9 @@ export const MobileBooksList = ({
   );
 };
 
-// MobileBooksList.propTypes = {
-//   detailedData: PropTypes.shape({
-//     id: PropTypes.string.isRequired(),
-//     volumeInfo: PropTypes.objectOf(PropTypes.string),
-//   }).isRequired(),
-// };
 MobileBooksList.propTypes = {
-  detailedData: PropTypes.object,
+  detailedData: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    volumeInfo: PropTypes.objectOf(PropTypes.string),
+  }),
 };
