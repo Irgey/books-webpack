@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { Typography } from '@mui/material';
+import { Typography, Container } from '@mui/material';
 import { StyledImg } from './NotFoundPage.styled';
 
 export const NotFoundPage = () => {
   return (
-    <>
+    <Container maxWidth="xl">
       <Typography variant="h3" align="center">
         Whoops!
       </Typography>
@@ -21,6 +21,6 @@ export const NotFoundPage = () => {
       <Typography variant="body1" align="center">
         Try our <Link to="/">homepage</Link> instead.
       </Typography>
-    </>
+    </Container>
   );
 };

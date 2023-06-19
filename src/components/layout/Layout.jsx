@@ -6,6 +6,7 @@ import { Header } from './Header/Header';
 import { Footer } from './Footer/Footer';
 import { useBooksContext } from 'hooks/booksContext';
 import { StyledBookPic, StyledMain } from './Layout.styled';
+import { useMediaQuery } from 'react-responsive';
 
 const ScrollTop = props => {
   const { children } = props;
@@ -42,12 +43,13 @@ const ScrollTop = props => {
 
 export const Layout = () => {
   const { queryParam } = useBooksContext();
+  const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
   return (
     <>
       <Header />
       <StyledMain>
         <Outlet />
-        {!queryParam && <StyledBookPic />}
+        {!queryParam && isTablet && <StyledBookPic />}
       </StyledMain>
 
       <ScrollTop>

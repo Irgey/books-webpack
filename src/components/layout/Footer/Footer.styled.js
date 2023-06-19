@@ -10,6 +10,7 @@ export const StyledFooter = styled(Box)`
 `;
 export const StyledSocialsList = styled.ul`
   display: flex;
+  list-style: none;
 `;
 export const StyledContainer = styled(Container)`
   display: flex;

@@ -17,15 +17,17 @@ export const Footer = () => {
         </Typography>
         <StyledSocialsList>
           {socials.map(social => (
-            <StyledLink
-              key={social.name}
-              href={social.link}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={social.name}
-            >
-              {serveIcon(social.name)}
-            </StyledLink>
+            <li>
+              <StyledLink
+                key={social.name}
+                href={social.link}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={social.name}
+              >
+                {serveIcon(social.name)}
+              </StyledLink>
+            </li>
           ))}
         </StyledSocialsList>
       </StyledContainer>

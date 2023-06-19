@@ -16,7 +16,7 @@ import { useMediaQuery } from 'react-responsive';
 import { BooksTableSkeleton } from 'components/Skeletons/BooksTableSkeleton';
 import { ErrorAPIRepresentation } from 'components/ErrorAPIRepresentation/ErrorAPIRepresentation';
 
-export const BooksPage = ({ query }) => {
+export const BooksPage = () => {
   const { queryParam, setSearchParams, detailsParam } = useBooksContext();
 
   const isMobile = useMediaQuery({ query: '(max-width: 490px)' });
