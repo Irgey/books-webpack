@@ -19,7 +19,7 @@ export const NotFoundPage = () => {
         Looks like this page went on vacation.
       </Typography>
       <Typography variant="body1" align="center">
-        Try our <Link to="/">homepage</Link> instead.
+        Try our <Link to="/">homepage</Link> instead or perform a search.
       </Typography>
     </Container>
   );
