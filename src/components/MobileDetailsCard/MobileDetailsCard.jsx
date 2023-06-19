@@ -53,6 +53,7 @@ export const MobileDetailsCard = ({ detailedData }) => {
         <CardActions>
           <Link
             href={infoLink}
+            target="_blank"
             rel="noreferrer nofollow"
             underline="hover"
             aria-label={`${servedLink} link`}
@@ -68,9 +69,7 @@ export const MobileDetailsCard = ({ detailedData }) => {
 
 MobileDetailsCard.propTypes = {
   detailedData: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    volumeInfo: PropTypes.objectOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.array])
-    ),
+    id: PropTypes.string,
+    volumeInfo: PropTypes.object,
   }),
 };

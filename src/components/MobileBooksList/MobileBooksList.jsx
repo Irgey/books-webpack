@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import {
   List,
   ListSubheader,
@@ -8,13 +9,13 @@ import {
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { MobileDetailsCard } from 'components/MobileDetailsCard/MobileDetailsCard';
-import { Fragment } from 'react';
+import { MobileDetailsCardSkeleton } from 'components/Skeletons/MobileDetailsCardSkeleton';
 
 export const MobileBooksList = ({
   books,
   detailedData,
   queryParam,
-  isLoading,
+  isFetchingDetails,
   handleRowClick,
   detailsParam,
   serveLink,
@@ -45,8 +46,15 @@ export const MobileBooksList = ({
                 <ListItemText primary={title} secondary={authors?.join(', ')} />
                 {id === detailsParam ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
+              {/* Skeleton */}
+              {id === detailsParam && isFetchingDetails && (
+                <MobileDetailsCardSkeleton />
+              )}
               {id === detailsParam && detailedData && (
-                <MobileDetailsCard detailedData={detailedData} />
+                <MobileDetailsCard
+                  detailedData={detailedData}
+                  detailsParam={detailsParam}
+                />
               )}
             </Fragment>
           );
@@ -58,7 +66,7 @@ export const MobileBooksList = ({
 
 MobileBooksList.propTypes = {
   detailedData: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    volumeInfo: PropTypes.objectOf(PropTypes.string),
+    id: PropTypes.string,
+    volumeInfo: PropTypes.object,
   }),
 };

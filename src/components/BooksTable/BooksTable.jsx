@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Fragment } from 'react';
 // Mui components
 import {
-  Skeleton,
   Table,
   TableBody,
   TableContainer,
@@ -14,12 +13,12 @@ import {
 // Local
 import { BooksDetails } from 'components/BookDetails/BooksDetails';
 import { StyledTableCell, StyledTableRow } from './BooksTable.styled';
+import { BookDetailsSkeleton } from 'components/Skeletons/BookDetailsSkeleton';
 
 export const BooksTable = ({
   books,
   detailedData,
-  queryParam,
-  isLoading,
+  isFetchingDetails,
   handleRowClick,
   detailsParam,
   serveLink,
@@ -30,18 +29,10 @@ export const BooksTable = ({
         <Table aria-label="simple table">
           <TableHead>
             <StyledTableRow>
-              <StyledTableCell>
-                {isLoading ? <Skeleton variant="text" /> : 'Title'}
-              </StyledTableCell>
-              <StyledTableCell align="right">
-                {isLoading ? <Skeleton variant="text" /> : 'Author'}
-              </StyledTableCell>
-              <StyledTableCell align="right">
-                {isLoading ? <Skeleton variant="text" /> : 'ID'}
-              </StyledTableCell>
-              <StyledTableCell align="right">
-                {isLoading ? <Skeleton variant="text" /> : 'Link'}
-              </StyledTableCell>
+              <StyledTableCell>{'Title'}</StyledTableCell>
+              <StyledTableCell align="right">{'Author'}</StyledTableCell>
+              <StyledTableCell align="right">{'ID'}</StyledTableCell>
+              <StyledTableCell align="right">{'Link'}</StyledTableCell>
             </StyledTableRow>
           </TableHead>
           <TableBody>
@@ -72,6 +63,7 @@ export const BooksTable = ({
                     <StyledTableCell align="right">
                       <Link
                         href={infoLink}
+                        target="_blank"
                         rel="noreferrer nofollow"
                         color="inherit"
                         underline="hover"
@@ -81,6 +73,11 @@ export const BooksTable = ({
                       </Link>
                     </StyledTableCell>
                   </StyledTableRow>
+                  {/* Skeleton */}
+                  {id === detailsParam && isFetchingDetails && (
+                    <BookDetailsSkeleton />
+                  )}
+                  {/* Fetched data */}
                   {id === detailsParam && detailedData && (
                     <BooksDetails detailedData={detailedData} />
                   )}
@@ -96,7 +93,7 @@ export const BooksTable = ({
 
 BooksTable.propTypes = {
   detailedData: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    volumeInfo: PropTypes.objectOf(PropTypes.string),
+    id: PropTypes.string,
+    volumeInfo: PropTypes.object,
   }),
 };

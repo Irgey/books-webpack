@@ -98,7 +98,7 @@ export const BooksDetails = ({ detailedData }) => {
 
 BooksDetails.propTypes = {
   detailedData: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    volumeInfo: PropTypes.objectOf(PropTypes.string),
+    id: PropTypes.string,
+    volumeInfo: PropTypes.object,
   }),
 };
