@@ -22,8 +22,7 @@ export const Breadcrumbs = ({ handleMobileMenuClose }) => {
           sx={{ color: 'white' }}
           variant="text"
           onClick={() => {
-            console.log('func', handleMobileMenuClose);
-            // handleMobileMenuClose();
+            handleMobileMenuClose();
             navigate('/');
           }}
         >
