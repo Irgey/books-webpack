@@ -45,7 +45,7 @@ export const MobileBooksList = ({
                 <ListItemText primary={title} secondary={authors?.join(', ')} />
                 {id === detailsParam ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
-              {id === detailsParam && (
+              {id === detailsParam && detailedData && (
                 <MobileDetailsCard detailedData={detailedData} />
               )}
             </Fragment>

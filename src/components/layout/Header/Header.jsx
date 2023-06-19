@@ -128,7 +128,7 @@ export const Header = () => {
       onClose={handleMobileMenuClose}
       sx={{ mt: '1px', '& .MuiMenu-paper': { backgroundColor: '#1c7cdc' } }}
     >
-      <Breadcrumbs />
+      <Breadcrumbs handleMobileMenuClose={handleMobileMenuClose} />
     </Menu>
   );
 

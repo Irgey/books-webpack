@@ -22,8 +22,9 @@ export const Breadcrumbs = ({ handleMobileMenuClose }) => {
           sx={{ color: 'white' }}
           variant="text"
           onClick={() => {
+            console.log('func', handleMobileMenuClose);
+            // handleMobileMenuClose();
             navigate('/');
-            handleMobileMenuClose();
           }}
         >
           Home
@@ -36,8 +37,8 @@ export const Breadcrumbs = ({ handleMobileMenuClose }) => {
             sx={{ color: 'white' }}
             variant="text"
             onClick={() => {
-              navigate(crumb);
               handleMobileMenuClose();
+              navigate(crumb);
             }}
           >
             {crumb}
@@ -48,8 +49,8 @@ export const Breadcrumbs = ({ handleMobileMenuClose }) => {
           sx={{ color: 'white' }}
           variant="text"
           onClick={() => {
-            setSearchParams({ q: queryParam });
             handleMobileMenuClose();
+            setSearchParams({ q: queryParam });
           }}
         >
           {queryParam}
@@ -60,8 +61,8 @@ export const Breadcrumbs = ({ handleMobileMenuClose }) => {
           sx={{ color: 'white' }}
           variant="text"
           onClick={() => {
-            setSearchParams({ q: queryParam, details: detailsParam });
             handleMobileMenuClose();
+            setSearchParams({ q: queryParam, details: detailsParam });
           }}
         >
           {detailsParam}

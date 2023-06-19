@@ -23,78 +23,76 @@ export const BooksDetails = ({ detailedData }) => {
     },
   } = detailedData;
   return (
-    <StyledTableRowDetails>
-      <StyledTableCell colSpan={4}>
-        <div>
-          {detailedData && (
-            <>
-              <h2>
-                <span>{title}</span>
-                {subtitle && <span>,{subtitle}</span>}
-              </h2>
-              <div className={s.contentWrapper}>
-                <div>
-                  <StyledImg
-                    alt={title}
-                    src={
-                      imageLinks.medium ||
-                      imageLinks.small ||
-                      imageLinks.thumbnail
-                    }
-                  />
-                </div>
-                <ul className={s.contentList}>
-                  {authors && (
-                    <li>
-                      <p>
-                        <b>Author: </b>
-                        {authors.join(', ')}
-                      </p>
-                    </li>
-                  )}
-                  {publisher && (
-                    <li>
-                      <p>
-                        <b>Publisher: </b>
-                        {publisher},{publishedDate}
-                      </p>
-                    </li>
-                  )}
-                  {printType && (
-                    <li>
-                      <p>
-                        <b>Print type: </b>
-                        {printType}
-                      </p>
-                    </li>
-                  )}
-                  {pageCount && (
-                    <li>
-                      <p>
-                        <b>Page count: </b>
-                        {pageCount}
-                      </p>
-                    </li>
-                  )}
-                  {description && (
-                    <li>
-                      {' '}
-                      <b>Description: </b>
-                      <ReactMarkdown
-                        className={s.descrContainer}
-                        rehypePlugins={[rehypeRaw]}
-                      >
-                        {description}
-                      </ReactMarkdown>
-                    </li>
-                  )}
-                </ul>
+    detailedData && (
+      <StyledTableRowDetails>
+        <StyledTableCell colSpan={4}>
+          <div>
+            <h2>
+              <span>{title}</span>
+              {subtitle && <span>,{subtitle}</span>}
+            </h2>
+            <div className={s.contentWrapper}>
+              <div>
+                <StyledImg
+                  alt={title}
+                  src={
+                    imageLinks.medium ||
+                    imageLinks.small ||
+                    imageLinks.thumbnail
+                  }
+                />
               </div>
-            </>
-          )}
-        </div>
-      </StyledTableCell>
-    </StyledTableRowDetails>
+              <ul className={s.contentList}>
+                {authors && (
+                  <li>
+                    <p>
+                      <b>Author: </b>
+                      {authors.join(', ')}
+                    </p>
+                  </li>
+                )}
+                {publisher && (
+                  <li>
+                    <p>
+                      <b>Publisher: </b>
+                      {publisher},{publishedDate}
+                    </p>
+                  </li>
+                )}
+                {printType && (
+                  <li>
+                    <p>
+                      <b>Print type: </b>
+                      {printType}
+                    </p>
+                  </li>
+                )}
+                {pageCount && (
+                  <li>
+                    <p>
+                      <b>Page count: </b>
+                      {pageCount}
+                    </p>
+                  </li>
+                )}
+                {description && (
+                  <li>
+                    {' '}
+                    <b>Description: </b>
+                    <ReactMarkdown
+                      className={s.descrContainer}
+                      rehypePlugins={[rehypeRaw]}
+                    >
+                      {description}
+                    </ReactMarkdown>
+                  </li>
+                )}
+              </ul>
+            </div>
+          </div>
+        </StyledTableCell>
+      </StyledTableRowDetails>
+    )
   );
 };
 

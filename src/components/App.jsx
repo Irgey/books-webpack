@@ -4,7 +4,13 @@ import '@fontsource/roboto';
 import { Router } from './Router/Router';
 
 export const App = () => {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 30000,
+      },
+    },
+  });
 
   return (
     <QueryClientProvider client={queryClient}>

@@ -51,7 +51,7 @@ export const BooksPage = ({ query }) => {
             </Typography>
           </>
         )}
-        {isMobile ? (
+        {books && isMobile ? (
           <MobileBooksList
             books={books}
             queryParam={queryParam}

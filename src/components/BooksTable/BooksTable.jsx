@@ -81,7 +81,7 @@ export const BooksTable = ({
                       </Link>
                     </StyledTableCell>
                   </StyledTableRow>
-                  {id === detailsParam && (
+                  {id === detailsParam && detailedData && (
                     <BooksDetails detailedData={detailedData} />
                   )}
                 </Fragment>
