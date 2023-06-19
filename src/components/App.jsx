@@ -7,6 +7,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: 30000, // due to Google Books API query limitations (1000 per day) we need to reduce count of requests and take data from cache
+      refetchOnWindowFocus: false,
     },
   },
 });

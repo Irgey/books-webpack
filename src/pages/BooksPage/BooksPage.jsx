@@ -1,9 +1,11 @@
 // Libs
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import 'react-toastify/dist/ReactToastify.min.css';
 // Mui components
+import { Typography, Container } from '@mui/material';
+
 // Local
 import { BooksTable } from 'components/BooksTable/BooksTable';
-import { Typography, Container } from '@mui/material';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import { useBooksContext } from 'hooks/booksContext';
 import { useQuery } from '@tanstack/react-query';
@@ -12,6 +14,7 @@ import { serveLink } from 'utils/serveLink';
 import { MobileBooksList } from 'components/MobileBooksList/MobileBooksList';
 import { useMediaQuery } from 'react-responsive';
 import { BooksTableSkeleton } from 'components/Skeletons/BooksTableSkeleton';
+import { ErrorAPIRepresentation } from 'components/ErrorAPIRepresentation/ErrorAPIRepresentation';
 
 export const BooksPage = ({ query }) => {
   const { queryParam, setSearchParams, detailsParam } = useBooksContext();
@@ -22,13 +25,13 @@ export const BooksPage = ({ query }) => {
     data: books,
     isFetching: isFetchingBooks,
     status,
+    error,
   } = useQuery({
     queryKey: ['books', queryParam],
     queryFn: () => searchByQuery(queryParam.trim().split(' ').join('+')),
 
     enabled: Boolean(queryParam),
   });
-  console.log('Status >>', status);
   const { data: detailedData, isFetching: isFetchingDetails } = useQuery({
     queryKey: ['bookInfo', detailsParam],
     queryFn: () => getFullInfoById(detailsParam),
@@ -41,6 +44,7 @@ export const BooksPage = ({ query }) => {
     }
     setSearchParams({ q: queryParam, details: id });
   };
+
   return (
     <>
       <ReactQueryDevtools />
@@ -76,6 +80,8 @@ export const BooksPage = ({ query }) => {
             serveLink={serveLink}
           />
         )}
+        {/* Fetching failed */}
+        {error && <ErrorAPIRepresentation error={error} />}
       </Container>
     </>
   );
